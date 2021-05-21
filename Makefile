@@ -56,13 +56,19 @@ OBJ		=	$(SRC:.c=.o)
 OBJ_B	=	$(BONUS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
 
+ifdef WITH_BONUS
+	OBJ_FILES = $(OBJ) $(OBJ_B)
+else
+	OBJ_FILES = $(OBJ)
+endif
+
 all : $(NAME)
 
 $(NAME) : $(OBJ)
 	ar rc $(NAME) $(OBJ)
 
-bonus : $(OBJ) $(OBJ_B)
-	ar rc $(NAME) $(OBJ) $(OBJ_B)
+bonus :
+	make WITH_BONUS=1 all
 
 clean :
 	$(RM) *.o
