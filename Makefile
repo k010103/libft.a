@@ -50,17 +50,17 @@ SRC = ft_memset.c \
 BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
 		ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
+ifdef WITH_BONUS
+	OBJS = $(OBJ) $(OBJ_B)
+else
+	OBJS = $(OBJ)
+endif
+
 CC = gcc
 RM = rm -rf
 OBJ		=	$(SRC:.c=.o)
 OBJ_B	=	$(BONUS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
-
-ifdef WITH_BONUS
-	OBJ_FILES = $(OBJ) $(OBJ_B)
-else
-	OBJ_FILES = $(OBJ)
-endif
 
 all : $(NAME)
 
